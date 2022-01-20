@@ -18,15 +18,15 @@ def report():
     word = request.args.get("word")
     if word:
         word = word.lower()
-        from_db = db.get(word)
-        if from_db:
-            jobs = from_db
+        existing_jobs = db.get(word)
+        if existing_jobs:
+            jobs = existing_jobs
         else:
             jobs = get_jobs(word)
             db[word] = jobs
     else:
         return redirect("/")
-    return render_template("report.html", word=word, resultsCount=len(jobs))
+    return render_template("report.html", word=word, resultsCount=len(jobs), jobs=jobs)
 
 
 if __name__ == "__main__":
