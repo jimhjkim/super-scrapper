@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask("SuperScraper")
 
@@ -8,12 +8,7 @@ app = Flask("SuperScraper")
 
 @app.route("/")
 def home():
-    return "Hello! Welcome to mi casa!"
-
-
-@app.route("/<username>")
-def contact(username):
-    return f"Hello {username} how are you doing?"
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
